@@ -1,0 +1,72 @@
+import java.util.Scanner;
+
+class BankAccount {
+    double balance;
+
+    BankAccount(double startingBalance) {
+        balance = startingBalance;
+    }
+
+    void checkBalance() {
+        System.out.println("Your MAI BANK Balance: ₹" + balance);
+    }
+
+    void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("₹" + amount + " deposited.");
+        } else {
+            System.out.println("Enter a valid amount to deposit.");
+        }
+    }
+
+    void withdraw(double amount) {
+        if (amount > balance) {
+            System.out.println("Not enough balance.");
+        } else if (amount <= 0) {
+            System.out.println("Enter a valid amount to withdraw.");
+        } else {
+            balance -= amount;
+            System.out.println("₹" + amount + " withdrawn.");
+        }
+    }
+}
+
+public class ATM {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        BankAccount myAccount = new BankAccount(1000.0);
+
+        System.out.println("Welcome to MAI BANK ATM");
+
+        while (true) {
+            System.out.println("\n------ MAI BANK MENU ------");
+            System.out.println("1. Check Balance");
+            System.out.println("2. Deposit");
+            System.out.println("3. Withdraw");
+            System.out.println("4. Exit");
+            System.out.print("Choose option (1-4): ");
+
+            int option = input.nextInt();
+
+            if (option == 1) {
+                myAccount.checkBalance();
+            } else if (option == 2) {
+                System.out.print("Enter deposit amount: ₹");
+                double depositAmount = input.nextDouble();
+                myAccount.deposit(depositAmount);
+            } else if (option == 3) {
+                System.out.print("Enter withdraw amount: ₹");
+                double withdrawAmount = input.nextDouble();
+                myAccount.withdraw(withdrawAmount);
+            } else if (option == 4) {
+                System.out.println("Thank you for using MAI BANK. Goodbye!");
+                break;
+            } else {
+                System.out.println("Invalid option. Please try again.");
+            }
+        }
+
+        input.close();
+    }
+}

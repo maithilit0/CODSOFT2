@@ -8,13 +8,14 @@ class BankAccount {
     }
 
     void checkBalance() {
-        System.out.println("Your MAI BANK Balance: ₹" + balance);
+        String message = String.format("Your MAI BANK Balance: Rs. %.2f%n", balance);
+        System.out.println(message);
     }
 
     void deposit(double amount) {
         if (amount > 0) {
             balance += amount;
-            System.out.println("₹" + amount + " deposited.");
+            System.out.println("Rs." + amount + " deposited.");
         } else {
             System.out.println("Enter a valid amount to deposit.");
         }
@@ -27,7 +28,7 @@ class BankAccount {
             System.out.println("Enter a valid amount to withdraw.");
         } else {
             balance -= amount;
-            System.out.println("₹" + amount + " withdrawn.");
+            System.out.println("Rs." + amount + " withdrawn.");
         }
     }
 }
@@ -52,11 +53,11 @@ public class ATM {
             if (option == 1) {
                 myAccount.checkBalance();
             } else if (option == 2) {
-                System.out.print("Enter deposit amount: ₹");
+                System.out.print("Enter deposit amount: Rs.");
                 double depositAmount = input.nextDouble();
                 myAccount.deposit(depositAmount);
             } else if (option == 3) {
-                System.out.print("Enter withdraw amount: ₹");
+                System.out.print("Enter withdraw amount: Rs.");
                 double withdrawAmount = input.nextDouble();
                 myAccount.withdraw(withdrawAmount);
             } else if (option == 4) {
